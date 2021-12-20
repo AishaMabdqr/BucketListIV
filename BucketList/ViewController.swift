@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum TaskType{
     case add
@@ -14,12 +15,34 @@ enum TaskType{
 
 class ViewController: UITableViewController {
     
-    var items : [String] = []
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var items : [Item] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        fetchItems()
     }
+    
+    func fetchItems(){
+        let itemRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
+        do{
+            let results = try managedObjectContext.fetch(itemRequest)
+            items = results as! [Item]
+        }catch{
+            print(error.localizedDescription)
+        }
+    }
+    
+    
+    func saveContext(){
+        do{
+            try managedObjectContext.save()
+        }catch {
+            print(error)
+        }
+    }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -27,7 +50,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = items[indexPath.row].text
         return cell
     }
     
@@ -44,12 +67,15 @@ class ViewController: UITableViewController {
         vc.taskType = .edit
         vc.delegate = self
         vc.indexPath = indexPath
-        vc.edittedItem = items[indexPath.row]
+        vc.edittedItem = items[indexPath.row].text
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
+        let item = items[indexPath.row]
+        managedObjectContext.delete(item)
+        saveContext()
         items.remove(at: indexPath.row)
         tableView.reloadData()
     }
@@ -59,7 +85,11 @@ class ViewController: UITableViewController {
 
 extension ViewController: SecondVCDelegate{
     func addItem(text: String) {
-        items.append(text)
+        let newItemEntity = Item(context: managedObjectContext)
+        newItemEntity.text = text
+        saveContext()
+        
+        items.append(newItemEntity)
         tableView.reloadData()
     }
     
@@ -68,7 +98,8 @@ extension ViewController: SecondVCDelegate{
             return
         }
 
-        items[indexPath.row] = text
+        items[indexPath.row].text = text
+        saveContext()
         tableView.reloadData()
     }
 }

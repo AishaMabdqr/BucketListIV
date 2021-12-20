@@ -14,6 +14,7 @@
 		F46C986E276FE5B100DDC360 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46C986D276FE5B100DDC360 /* Assets.xcassets */; };
 		F46C9871276FE5B100DDC360 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46C986F276FE5B100DDC360 /* LaunchScreen.storyboard */; };
 		F46C9879276FEBF200DDC360 /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C9878276FEBF100DDC360 /* AddItemTableViewController.swift */; };
+		F49205312770B5E7008DD962 /* BucketList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F492052F2770B5E7008DD962 /* BucketList.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		F46C9870276FE5B100DDC360 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F46C9872276FE5B100DDC360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46C9878276FEBF100DDC360 /* AddItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
+		F49205302770B5E7008DD962 /* BucketList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BucketList.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				F46C986D276FE5B100DDC360 /* Assets.xcassets */,
 				F46C986F276FE5B100DDC360 /* LaunchScreen.storyboard */,
 				F46C9872276FE5B100DDC360 /* Info.plist */,
+				F492052F2770B5E7008DD962 /* BucketList.xcdatamodeld */,
 			);
 			path = BucketList;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				F46C9879276FEBF200DDC360 /* AddItemTableViewController.swift in Sources */,
 				F46C9869276FE5A800DDC360 /* ViewController.swift in Sources */,
+				F49205312770B5E7008DD962 /* BucketList.xcdatamodeld in Sources */,
 				F46C9865276FE5A800DDC360 /* AppDelegate.swift in Sources */,
 				F46C9867276FE5A800DDC360 /* SceneDelegate.swift in Sources */,
 			);
@@ -362,6 +366,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F492052F2770B5E7008DD962 /* BucketList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F49205302770B5E7008DD962 /* BucketList.xcdatamodel */,
+			);
+			currentVersion = F49205302770B5E7008DD962 /* BucketList.xcdatamodel */;
+			path = BucketList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F46C9859276FE5A800DDC360 /* Project object */;
 }
