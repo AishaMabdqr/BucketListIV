@@ -7,41 +7,39 @@
 
 import UIKit
 
-protocol SecondVCDelegate{
-    func addItem(text: String)
-    func editItem(text: String, indexPath: IndexPath?)
-}
 
 class AddItemTableViewController: UITableViewController {
     
     @IBOutlet weak var items: UITextField!
-    var delegate: SecondVCDelegate?
-    var edittedItem: String?
-    var indexPath: IndexPath?
-    var taskType: TaskType?
+    
+    var delegate: ViewController?
+    
+   // var edittedItem: String?
+  //  var indexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        items.text = edittedItem
+       // items.text = edittedItem
      
     }
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         guard let text = items.text else {return}
-        
-        switch taskType{
-        case .add:
-            delegate?.addItem(text: text)
             
-        case .edit:
-            delegate?.editItem(text: text, indexPath: indexPath)
-            
-        case .none:
-            print("No tasks")
-        }
-       
-        self.navigationController?.popViewController(animated: true)
-        
+            TaskModel.addTaskWithObjective(objective: text, completionHandler: {
+                data, response, error in
+                do {
+                     let tasks = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary
+                    
+                    DispatchQueue.main.async {
+                        self.delegate?.taskItems?.append(tasks!)
+                        self.delegate?.tableView.reloadData()
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                  
+                } catch {
+                    print("Something went wrong")
+                }
+            })
     }
-
 }
