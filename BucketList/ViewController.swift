@@ -18,11 +18,35 @@ class ViewController: UITableViewController {
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var items : [Item] = []
+    
+    var taskItems : [NSDictionary]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchItems()
-    }
+    
+        TaskModel.getAllTasks(completionHandler: {
+            data, response, error in
+            do {
+                if let tasks = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSArray{
+                    print(tasks)
+                
+                    for task in tasks {
+                        let taskDict = task as! NSDictionary
+                        self.taskItems?.append(taskDict)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                 }
+            } catch {
+                print("Something went wrong")
+            }
+            
+        })
+        
+      }
+        
     
     func fetchItems(){
         let itemRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
@@ -45,12 +69,12 @@ class ViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return taskItems?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
-        cell.textLabel?.text = items[indexPath.row].text
+        cell.textLabel?.text = taskItems?[indexPath.row]["objective"] as? String
         return cell
     }
     

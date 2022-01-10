@@ -14,6 +14,7 @@
 		F46C986E276FE5B100DDC360 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46C986D276FE5B100DDC360 /* Assets.xcassets */; };
 		F46C9871276FE5B100DDC360 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46C986F276FE5B100DDC360 /* LaunchScreen.storyboard */; };
 		F46C9879276FEBF200DDC360 /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C9878276FEBF100DDC360 /* AddItemTableViewController.swift */; };
+		F4908C05278B99E200F06E94 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4908C04278B99E200F06E94 /* TaskModel.swift */; };
 		F49205312770B5E7008DD962 /* BucketList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F492052F2770B5E7008DD962 /* BucketList.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		F46C9870276FE5B100DDC360 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F46C9872276FE5B100DDC360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46C9878276FEBF100DDC360 /* AddItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
+		F4908C04278B99E200F06E94 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		F49205302770B5E7008DD962 /* BucketList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BucketList.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 				F46C9866276FE5A800DDC360 /* SceneDelegate.swift */,
 				F46C9868276FE5A800DDC360 /* ViewController.swift */,
 				F46C9878276FEBF100DDC360 /* AddItemTableViewController.swift */,
+				F4908C04278B99E200F06E94 /* TaskModel.swift */,
 				F46C986A276FE5A800DDC360 /* Main.storyboard */,
 				F46C986D276FE5B100DDC360 /* Assets.xcassets */,
 				F46C986F276FE5B100DDC360 /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4908C05278B99E200F06E94 /* TaskModel.swift in Sources */,
 				F46C9879276FEBF200DDC360 /* AddItemTableViewController.swift in Sources */,
 				F46C9869276FE5A800DDC360 /* ViewController.swift in Sources */,
 				F49205312770B5E7008DD962 /* BucketList.xcdatamodeld in Sources */,
