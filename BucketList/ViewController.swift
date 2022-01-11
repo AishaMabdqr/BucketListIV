@@ -8,10 +8,19 @@
 import UIKit
 import CoreData
 
+enum TaskType{
+    case add
+    case edit
+}
+
 
 class ViewController: UITableViewController {
     
     var taskItems : [NSDictionary]? = []
+    var taskId = 0
+    var indexPath : IndexPath?
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,19 +64,30 @@ class ViewController: UITableViewController {
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "secondVC") as! AddItemTableViewController
         vc.delegate = self
+        vc.taskType = .add
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "secondVC") as! AddItemTableViewController
+        let id = taskItems?[indexPath.row].value(forKey: "id")
+        
         vc.delegate = self
-     //   vc.indexPath = indexPath
-    //    vc.edittedItem = items[indexPath.row].text
+        vc.taskType = .edit
+        vc.indexPath = indexPath
+        vc.edittedItem = taskItems?[indexPath.row]
+        vc.taskId = id as! Int
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
+        
+        let id = taskItems?[indexPath.row].value(forKey: "id") as! Int
+        TaskModel.deleteTask(id: id, completionHandler: {
+            data, response, error in
+                print("")
+            })
+        taskItems?.remove(at: indexPath.row)
         tableView.reloadData()
     }
 
