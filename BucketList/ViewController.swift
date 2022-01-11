@@ -85,7 +85,7 @@ class ViewController: UITableViewController {
         let id = taskItems?[indexPath.row].value(forKey: "id") as! Int
         TaskModel.deleteTask(id: id, completionHandler: {
             data, response, error in
-                print("")
+                print("data removed")
             })
         taskItems?.remove(at: indexPath.row)
         tableView.reloadData()
